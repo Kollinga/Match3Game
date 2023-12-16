@@ -1,0 +1,90 @@
+.container{
+    text-align: center;
+}
+
+.title{
+    margin-top: 20px;
+    color: white;
+    font-size: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title span{
+    color: #26ffcb;
+    padding-left: 15px;
+}
+
+.reset{
+    width: 300px;
+    height: 120px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #1f3540;
+    font-size: 36px;
+    color: #ffffff;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    position: absolute;
+    left: 20%;
+    top: 40%;
+    transform: translateY(-50%);
+}
+.reveal{
+    width: 300px;
+    height: 120px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #df1767;
+    font-size: 36px;
+    color: #ffffff;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    position: absolute;
+    right: -50%;
+    top: 25%;
+    transform: translateY(-50%);
+}
+.boxes{
+    display: flex;
+    height: 300px;
+    width: 300px;
+    background: #1f3540;
+    border: 4px solid #0f1b21;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.board{
+    height: 1200px;
+    width: 1200px;
+    display: flex;
+    margin: auto;
+    position: relative;
+}
+.boxes img{
+    margin: 20px 20px;     
+}
+
+.winner{
+    /*display: flexbox;
+    font-family: Impact;
+    font:bold;
+    font-size: 36px;
+    color: #26ffcb;
+    margin-top: 25px;*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Impact;
+    font-size: 90px;
+    color: white;
+
+
+}
