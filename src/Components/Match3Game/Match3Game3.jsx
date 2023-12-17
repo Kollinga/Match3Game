@@ -8,14 +8,15 @@ export const Match3Game3 = () => {
   const [grid, setGrid] = useState([]);
   const [revealedCells, setRevealedCells] = useState([]);
   const [win, setWin] = useState(false);
-  const [winningPrize, setWinningPrize] = useState([]);
+  const [winningPrize, setWinningPrize] = useState(null);
+  const [initialPrize, setInitialPrize] = useState(null);
   
   const generateRandomGrid = () => {
     const gridWithImages = [];
     const totalCells = 16; // 4x4 grid
 
-    const blueCount = 12;
-    const greenCount = 1;
+    const blueCount = 11;
+    const greenCount = 2;
     const redCount = 3;
 
     const images = [
@@ -46,7 +47,9 @@ export const Match3Game3 = () => {
     const newGrid = generateRandomGrid();
     setGrid(newGrid);
     setRevealedCells([]);
-    setWin(false);
+    setWin(false); // Reset win state
+    setWinningPrize(null); // Reset winning prize
+    setInitialPrize(null); // Reset initial prize
   };
 
   const revealCell = (rowIndex, colIndex) => {
@@ -84,16 +87,25 @@ export const Match3Game3 = () => {
 
     
 
+    let currentPrize = null;
+
+  if (winningPrize === null) {
     if (redCount === 3) {
-      setWin(true);
-      setWinningPrize('$500 cash');
+      currentPrize = '$500 cash';
     } else if (greenCount === 1) {
-      setWin(true);
-      setWinningPrize('$100 cash');
+      currentPrize = '$100 cash';
     } else if (blueCount === 3) {
-      setWin(true);
-      setWinningPrize('$50 free play');
+      currentPrize = '$50 free play';
     }
+
+    if (currentPrize !== null) {
+      setWin(true);
+      setWinningPrize(currentPrize);
+      if (initialPrize === null) {
+        setInitialPrize(currentPrize);
+      }
+    }
+  }
     
   };
 
@@ -152,9 +164,9 @@ export const Match3Game3 = () => {
       </div>
       {win && (
         <div className="winner">
-          <p>Congratulations! </p>
+          <p>CONGRATULATIONS! </p>
           <p>You have matched the Bells!</p>
-        <p>Prize: {winningPrize}</p>
+          <p>PRIZE: {initialPrize !== null ? initialPrize : winningPrize}</p>
           <div>
           <button className='reveal' onClick={revealAllBoxes}>Reveal All</button>  
           </div>
