@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import redBell from '../Assets/red_color.png';
 import greenBell from '../Assets/green_color.png';
 import blueBell from '../Assets/blue_color.png';
+import videoBell from '../Assets/bellsManiaBG.mp4';
 import './Math3Game.css'
 
 export const Match3Game3 = () => {
@@ -136,10 +137,13 @@ export const Match3Game3 = () => {
   }; 
 
   return (
-    <div className="container">
-      <h1 className="title">Bells Mania</h1>
+    <div className='bgContainer'>
+      <div className='overlay'>
+        <video src={videoBell} autoPlay loop muted/>
+        <div className="container">
+      <h1 className="title">BELLS MANIA</h1>
       <button className="reset" onClick={resetGrid}>
-        New Game
+        NEW GAME
       </button>
       
       <div className="board">
@@ -166,15 +170,19 @@ export const Match3Game3 = () => {
         <div className="winner">
           <p>CONGRATULATIONS! </p>
           <p>You have matched the Bells!</p>
-          <p>PRIZE: {initialPrize !== null ? initialPrize : winningPrize}</p>
+          <p className='prize'>PRIZE: {initialPrize !== null ? initialPrize : winningPrize}</p>
           <div>
-          <button className='reveal' onClick={revealAllBoxes}>Reveal All</button>  
+          <button className='reveal' onClick={revealAllBoxes}>REVEAL ALL</button>  
           </div>
           
         </div>
       )}
 
+        </div>
+      </div>         
     </div>
+
+   
   );
 };
 
