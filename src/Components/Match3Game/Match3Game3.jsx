@@ -91,11 +91,11 @@ export const Match3Game3 = () => {
 
   if (winningPrize === null) {
     if (redCount === 3) {
-      currentPrize = '$500 cash';
+      currentPrize = '$500 CASH';
     } else if (greenCount === 1) {
-      currentPrize = '$100 cash';
+      currentPrize = '$100 CASH';
     } else if (blueCount === 3) {
-      currentPrize = '$50 free play';
+      currentPrize = '$50 FREE PLAY';
     }
 
     if (currentPrize !== null) {
