@@ -54,21 +54,23 @@ export const Match3Game3 = () => {
   };
 
   const revealCell = (rowIndex, colIndex) => {
+    if (win) return; // Stop revealing cells if there's a winner
+  
     if (!revealedCells.includes(`${rowIndex}-${colIndex}`)) {
       const updatedRevealedCells = [...revealedCells, `${rowIndex}-${colIndex}`];
       setRevealedCells(updatedRevealedCells);
-
+  
       const revealedColors = updatedRevealedCells.map((cell) => {
         const [row, col] = cell.split('-');
         return grid[parseInt(row)][parseInt(col)];
       });
-
+  
       const colorCounts = {
         red: revealedColors.filter((color) => color === 'red').length,
         green: revealedColors.filter((color) => color === 'green').length,
         blue: revealedColors.filter((color) => color === 'blue').length,
       };
-
+  
       if (colorCounts.red === 3 || colorCounts.green === 3 || colorCounts.blue === 3) {
         setWin(true);
       }
