@@ -17,8 +17,6 @@ export const Match3Game3 = () => {
   const [secondMatrix, setSecondMatrix] = useState([]);
   const [secondMatrixRevealed, setSecondMatrixRevealed] = useState([]); // Tracks revealed cells
   const [triggerMessageVisible, setTriggerMessageVisible] = useState(false);
-  const [customAlert, setCustomAlert] = useState(null); // Tracks alert message
-
 
   // Generate the first matrix grid
   const generateRandomGrid = () => {
@@ -103,9 +101,8 @@ export const Match3Game3 = () => {
         prizeMessage = 'You found the Grinch! You win $50 Free Play!';
       }
 
-      //setWinningPrize(prizeMessage);
-      //alert(prizeMessage);
-      setCustomAlert(prizeMessage);
+      setWinningPrize(prizeMessage);
+      alert(prizeMessage);
 
       // Reveal all cells after the alert
       setSecondMatrixRevealed(['0-0', '0-1', '1-0', '1-1']);
@@ -156,41 +153,37 @@ export const Match3Game3 = () => {
 
           {showSecondMatrix ? (
             <div className="second-matrix-popup">
-          <button className="close-button" onClick={() => setShowSecondMatrix(false)}>
-           ✖
-          </button>
-            <div className="board">
-              {secondMatrix.map((row, rowIndex) => (
-                <div key={rowIndex} className="row">
-                  {row.map((color, colIndex) => {
-                    const cellKey = `${rowIndex}-${colIndex}`;
-                    return (
-                      <div
-                        key={colIndex}
-                        className={`boxes ${secondMatrixRevealed.includes(cellKey) ? 'revealed' : ''}`}
-                        onClick={() => revealSecondMatrixCell(rowIndex, colIndex)}
-                      >
-                        {secondMatrixRevealed.includes(cellKey) && (
-                          <img
-                            src={
-                              color === 'red'
-                                ? redBell
-                                : color === 'elf'
-                                ? elfBell
-                                : grinchBell
-                            }
-                            alt={`${color} bell`}
-                          />
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
+              <h2>Second Matrix</h2>
+              <div className="board">
+                {secondMatrix.map((row, rowIndex) => (
+                  <div key={rowIndex} className="row">
+                    {row.map((color, colIndex) => {
+                      const cellKey = `${rowIndex}-${colIndex}`;
+                      return (
+                        <div
+                          key={colIndex}
+                          className={`boxes ${secondMatrixRevealed.includes(cellKey) ? 'revealed' : ''}`}
+                          onClick={() => revealSecondMatrixCell(rowIndex, colIndex)}
+                        >
+                          {secondMatrixRevealed.includes(cellKey) && (
+                            <img
+                              src={
+                                color === 'red'
+                                  ? redBell
+                                  : color === 'elf'
+                                  ? elfBell
+                                  : grinchBell
+                              }
+                              alt={`${color} bell`}
+                            />
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          
-          
           ) : (
             <div className="board">
               {grid.map((row, rowIndex) => (
@@ -221,14 +214,6 @@ export const Match3Game3 = () => {
               <p className="prize">PRIZE: {winningPrize}</p>
             </div>
           )}
-          {customAlert && (
-          <div className="custom-alert">
-            <div className="custom-alert-content">
-              <p>{customAlert}</p>
-              <button onClick={() => setCustomAlert(null)}>OK</button>
-            </div>
-          </div>
-        )}
         </div>
       </div>
     </div>
